@@ -57,8 +57,36 @@
             <div class="links">
                 <a href="mailto:dcupolo@horrycountyschools.net" class="link">email</a>
             </div>
-            <div class="volume-container">
             </div>
-        </div> 
+            <div class="volume-container">
+                <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1">
+                <label for="volume-control" class="volume-label">volume</label>
+            </div>
+        </div>
+
+        <audio id="bg-music" src="Yeat-bigger-th-n-everything-(JustNaija.com).mp3" loop></audio>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('overlay');
+            const content = document.querySelector('.content');
+            const bgMusic = document.getElementById('bg-music');
+            const volumeControl = document.getElementById('volume-control');
+
+            overlay.addEventListener('click', () => {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    content.style.display = 'flex';
+                    bgMusic.play();
+                }, 1000);
+            });
+            volumeControl.addEventListener('input', (e) => {
+                bgMusic.volume = e.target.value;
+            });
+        });
     </script>
-  </html>
+</body>
+
+</html>
